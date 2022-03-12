@@ -12,6 +12,7 @@ public class Config {
     private static Config config = null;
 
     private String serverUrl;
+    private boolean autosync = true;
     private AuthenticationData authenticationData;
 
     public String getServerUrl() {
@@ -34,6 +35,15 @@ public class Config {
 
     public boolean hasServerURL() {
         return this.serverUrl != null && this.serverUrl.length() > 0;
+    }
+
+    public boolean isAutosync() {
+        return this.autosync;
+    }
+
+    public Config setAutosync(boolean autosync) {
+        this.autosync = autosync;
+        return this;
     }
 
     public void save() {

@@ -8,6 +8,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
+import java.io.File;
+
 public class SshelterApi {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -83,4 +85,5 @@ public class SshelterApi {
     protected Request prepare(String method, String endpoint) {
         return this.prepare(method, endpoint, null);
     }
+
 }

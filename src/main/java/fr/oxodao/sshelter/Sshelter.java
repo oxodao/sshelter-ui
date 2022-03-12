@@ -44,7 +44,7 @@ public class Sshelter {
             System.out.println(m.name);
         }
 
-        //new TrayIcon();
+        new TrayIcon();
     }
 
 }

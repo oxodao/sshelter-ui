@@ -1,6 +1,5 @@
 package fr.oxodao.sshelter.api;
 
-import com.google.gson.reflect.TypeToken;
 import fr.oxodao.sshelter.api.model.HydraList;
 import fr.oxodao.sshelter.api.model.Machine;
 import okhttp3.Response;

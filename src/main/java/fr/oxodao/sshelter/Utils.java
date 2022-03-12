@@ -49,4 +49,23 @@ public class Utils {
 
         return folderPath;
     }
+
+    public static File getSshConfig() throws Exception {
+        File home = new File(System.getProperty("user.home"));
+        OS os = Utils.getOS();
+        switch (os) {
+            case WINDOWS:
+                throw new Exception("Windows is not supported yet !");
+            case LINUX:
+            case OSX:
+                var sshConfig = new File(home, ".ssh/config");
+                if (!sshConfig.exists()) {
+                    sshConfig.createNewFile();
+                }
+
+                return sshConfig;
+        }
+
+        return null;
+    }
 }
