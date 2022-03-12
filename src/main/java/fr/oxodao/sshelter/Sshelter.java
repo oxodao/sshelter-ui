@@ -3,6 +3,8 @@ package fr.oxodao.sshelter;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import fr.oxodao.sshelter.api.SshelterApi;
+import fr.oxodao.sshelter.api.model.HydraList;
+import fr.oxodao.sshelter.api.model.Machine;
 
 import javax.swing.*;
 
@@ -32,8 +34,17 @@ public class Sshelter {
         }
         Sshelter.api = new SshelterApi(Config.getConfig().getServerUrl(), Config.getConfig().getAuthenticationData());
         Sshelter.api.Auth().onAuthenticationUpdated((data) -> Config.getConfig().setAuthenticationData(data).save());
+        Sshelter.api.Auth().onAuthenticationRequired(() -> {
+            (new LoginFrame()).show();
+        });
 
-        new TrayIcon();
+        HydraList<Machine> machines = Sshelter.api.Machines().findAll();
+
+        for(Machine m : machines.elements) {
+            System.out.println(m.name);
+        }
+
+        //new TrayIcon();
     }
 
 }

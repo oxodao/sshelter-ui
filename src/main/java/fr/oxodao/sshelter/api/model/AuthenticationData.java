@@ -69,17 +69,14 @@ public class AuthenticationData {
 
     public boolean isValid() {
         if (this.username == null || this.username.length() == 0) {
-            System.out.println("Username null");
             return false;
         }
 
         if (this.token == null || this.token.length() == 0 || this.refreshToken == null || this.refreshToken.length() == 0) {
-            System.out.println("Token null");
             return false;
         }
 
-        if (!this.isExpired()) {
-            System.out.println("Expired");
+        if (this.isExpired()) {
             return false;
         }
         // @TODO check if the refreshtoken is not expired
@@ -87,7 +84,7 @@ public class AuthenticationData {
         return true;
     }
 
-    private boolean isExpired() {
+    public boolean isExpired() {
         if (this.parsedToken == null) {
             this.parseToken();
             if (this.parsedToken == null) {
@@ -98,6 +95,6 @@ public class AuthenticationData {
         Calendar now = Calendar.getInstance();
         now.add(Calendar.SECOND, 30);
 
-        return now.getTimeInMillis() > this.parsedToken.expiresAt;
+        return (now.getTimeInMillis()/1000) > this.parsedToken.expiresAt;
     }
 }
