@@ -1,12 +1,6 @@
 plugins {
     id 'application'
-}
-
-compileJava.options.fork = true
-compileJava.options.forkOptions.executable = '/usr/lib/jvm/java-11-openjdk/bin/javac'
-
-application {
-    mainClass = 'fr.oxodao.sshelter.Sshelter'
+    id 'org.beryx.runtime' version '1.12.7'
 }
 
 repositories {
@@ -18,4 +12,26 @@ dependencies {
     implementation('com.google.code.gson:gson:2.9.0')
     implementation('com.squareup.okhttp3:okhttp:4.9.3')
     implementation('com.dorkbox:SystemTray:3.17')
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+application {
+    mainClass = 'fr.oxodao.sshelter.Sshelter'
+    applicationName = 'SSHelter'
+}
+
+runtime {
+    options = [ '--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages' ]
+    modules = [ 'java.base', 'jdk.crypto.ec', 'java.desktop', 'java.logging', 'java.sql' ]
+    imageDir = file("$buildDir/sshelter")
+    imageZip = file("$buildDir/sshelter.zip")
+}
+
+tasks.runtime.doLast {
+    copy {
+        from('src/main/resources')
+        into("$buildDir/image/bin")
+    }
 }

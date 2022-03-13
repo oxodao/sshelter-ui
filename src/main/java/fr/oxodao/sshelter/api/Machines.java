@@ -24,6 +24,7 @@ public class Machines {
             );
         } catch (Exception e){
             System.out.println("Err: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return null;
