@@ -2,10 +2,13 @@ package fr.oxodao.sshelter;
 
 import dorkbox.systemTray.*;
 import fr.oxodao.sshelter.api.model.Machine;
+import fr.oxodao.sshelter.ui.EditMachinesFrame;
 
 import javax.swing.*;
 
 public class TrayIcon {
+
+    public static TrayIcon instance = null;
 
     private ThreadSync syncThread;
     private SystemTray trayIcon;
@@ -62,7 +65,16 @@ public class TrayIcon {
             }));
         }
 
+        this.machines.add(new Separator());
+        this.machines.add(new MenuItem("Edit machines...", (evt) -> SwingUtilities.invokeLater(() -> new EditMachinesFrame(machines))));
         SshConfig.updateSshConfig(machines);
     }
 
+    public static TrayIcon get() {
+        if (instance == null) {
+            instance = new TrayIcon();
+        }
+
+        return instance;
+    }
 }

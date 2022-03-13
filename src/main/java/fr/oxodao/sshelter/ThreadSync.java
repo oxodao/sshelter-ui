@@ -31,10 +31,10 @@ public class ThreadSync extends Thread {
     public void run() {
         while (this.autosync) {
             try {
-                System.out.println("Sync...");
-
                 var machines = Sshelter.api.Machines().findAll();
-                this.ti.setMachines(machines.elements);
+                if (machines != null) {
+                    this.ti.setMachines(machines.elements);
+                }
 
                 Thread.sleep(30 * 1000);
             } catch (Exception e) {

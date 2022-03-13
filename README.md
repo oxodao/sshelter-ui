@@ -18,9 +18,9 @@ Simply run the jar with Java 11 (It won't work in higher / lower version, becaus
 The first time, you will be greeted with a prompt to login. Fill the information and you will have an icon in your system tray. When right-clicked, it will give you a list of your machine. Clicking on them will silently connect in SSH to them so that you can access your port forwardings.
 
 ## Roadmap
-- [ ] Implementing basic auto-sync
-- [ ] Implementing a way to create machines
-- [ ] Implementing a way to delete machines
+- [x] Implementing basic auto-sync
+- [~] Implementing a way to create machines
+- [~] Implementing a way to delete machines
 - [ ] Implementing a way to export machines
 - [ ] SSH Connection to the machines
 - [ ] General system stability improvements to enhance the user's experience.

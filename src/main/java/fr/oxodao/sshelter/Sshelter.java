@@ -38,13 +38,7 @@ public class Sshelter {
             (new LoginFrame()).show();
         });
 
-        HydraList<Machine> machines = Sshelter.api.Machines().findAll();
-
-        for(Machine m : machines.elements) {
-            System.out.println(m.name);
-        }
-
-        new TrayIcon();
+        TrayIcon.get();
     }
 
 }
