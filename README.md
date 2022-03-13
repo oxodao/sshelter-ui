@@ -9,13 +9,18 @@ This is the graphical client for the [SSHelter](https://github.com/oxodao/sshelt
 
 ## Installation
 
-@TODO
+Grab the latest zip from the release tab and extract it in `/opt/sshelter`. Updating is simply a matter or removing this directory and doing it again.
+
+Then, for simple usage, you can just symlink the starting script:
+```bash
+$ sudo ln -s /opt/sshelter/bin/SSHelter /usr/local/sshelter
+```
 
 ## Usage
 
-Simply run the jar with Java 11 (It won't work in higher / lower version, because of a [dependency](https://github.com/dorkbox/SystemTray) I'm using that is still not up to date)
+Once installed, you simply have to run the sshelter command. There is no shorcut made yet so it wont be found in your standard app launcher.
 
-The first time, you will be greeted with a prompt to login. Fill the information and you will have an icon in your system tray. When right-clicked, it will give you a list of your machine. Clicking on them will silently connect in SSH to them so that you can access your port forwardings.
+The first time, you will be greeted with a prompt to login. Fill the information and you will have an icon in your system tray. When right-clicked, it will give you a list of your machine. In the future, clicking on them will silently connect in SSH to them so that you can access your port forwardings.
 
 ## Roadmap
 - [x] Implementing basic auto-sync
