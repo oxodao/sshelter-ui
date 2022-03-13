@@ -33,11 +33,12 @@ public class ForwardedPortPane extends JPanel {
         leftPane.add(new JScrollPane(list), BorderLayout.CENTER);
         leftPane.add(this.addButton, BorderLayout.SOUTH);
 
-        //leftPane.setPreferredSize(new Dimension(100, Integer.MAX_VALUE));
+        leftPane.setPreferredSize(new Dimension(200, 80));
 
         this.add(leftPane, BorderLayout.WEST);
 
         JPanel rightPane = new JPanel(new GridLayout(6, 2));
+        rightPane.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 
         rightPane.add(new JLabel("Local host:"));
         rightPane.add(this.localHostField);
@@ -73,6 +74,7 @@ public class ForwardedPortPane extends JPanel {
 
             fw.localHostname = this.localHostField.getText().length() > 0 ? this.localHostField.getText() : null;
             fw.localPort = (int)this.localPortField.getValue();
+            fw.reversed = this.reversed;
             fw.remoteHostname = this.remoteHostField.getText().length() > 0 ? this.remoteHostField.getText() : null;
             fw.remotePort = (int)this.remotePortField.getValue();
 
@@ -115,6 +117,7 @@ public class ForwardedPortPane extends JPanel {
         this.localPortField.setValue(forwardedPort.localPort);
 
         this.reversed = forwardedPort.reversed;
+        this.directionButton.setText(this.reversed ? "Mapped remotely" : "Mapped locally");
 
         this.remoteHostField.setText(forwardedPort.remoteHostname);
         this.remotePortField.setValue(forwardedPort.remotePort);

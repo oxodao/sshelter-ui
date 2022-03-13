@@ -32,12 +32,12 @@ public class SshelterApi {
 
     public SshelterApi(String serverUrl) {
         this();
-        if (!serverUrl.endsWith("/")) {
-            serverUrl += "/";
+        if (serverUrl.endsWith("/")) {
+            serverUrl = serverUrl.substring(0, serverUrl.length() - 1);
         }
 
-        if (!serverUrl.endsWith("/api/")) {
-            serverUrl += "api/";
+        if (serverUrl.endsWith("/api")) {
+            serverUrl = serverUrl.substring(0, serverUrl.length() - 4);
         }
 
         this.serverUrl = serverUrl;
@@ -65,8 +65,12 @@ public class SshelterApi {
             endpoint = endpoint.substring(1);
         }
 
+        if (!endpoint.startsWith("api/")) {
+            endpoint = "api/" + endpoint;
+        }
+
         var req = new Request.Builder()
-                .url(this.serverUrl + endpoint)
+                .url(this.serverUrl + "/" + endpoint)
                 .header("Accept", "application/ld+json")
                 .header("Content-Type", "application/json")
                 .method(method, body);

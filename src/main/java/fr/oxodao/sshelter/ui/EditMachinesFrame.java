@@ -44,4 +44,12 @@ public class EditMachinesFrame extends JFrame {
         this.machinesList.setListData(machines);
     }
 
+    public void selectById(String id) {
+        for (int i = 0; i < this.machinesList.getModel().getSize(); i++) {
+            if (this.machinesList.getModel().getElementAt(i).id.equals(id)) {
+                this.machinesList.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
 }

@@ -60,7 +60,7 @@ public class Authentication {
         var body = RequestBody.create(SshelterApi.gson.toJson(m), JSON);
 
         try {
-            Response call = this.api.client.newCall(this.api.prepare("POST", "/auth/refresh", body)).execute();
+            Response call = this.api.client.newCall(this.api.prepare("POST", "/auth/refresh", body, false)).execute();
             if (call.code() == 200) {
                 var ad = SshelterApi.gson.fromJson(call.body().string(), ApiAuthentication.class);
                 this.api.authData = this.api.authData

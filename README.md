@@ -19,10 +19,12 @@ The first time, you will be greeted with a prompt to login. Fill the information
 
 ## Roadmap
 - [x] Implementing basic auto-sync
-- [~] Implementing a way to create machines
-- [~] Implementing a way to delete machines
+- [x] Implementing a way to create machines
+- [x] Implementing a way to delete machines
 - [ ] Implementing a way to export machines
+- [ ] Fix the API => editing a machine that does not change its shortname results in an error
 - [ ] SSH Connection to the machines
+    - [ ] Let the user choose which SSH key to use (client-side only)
 - [ ] General system stability improvements to enhance the user's experience.
 
 ## License

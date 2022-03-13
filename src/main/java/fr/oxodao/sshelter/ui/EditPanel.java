@@ -118,7 +118,26 @@ class EditPanel extends JPanel {
 
         this.saveButton.addActionListener(e -> {
             try {
-                Sshelter.api.Machines().create(this.machine);
+                var currMachine = this.getMachine();
+                var savedMachine = Sshelter.api.Machines().createOrUpdate(currMachine);
+
+                // We only want to display message when the machine is updated
+                // When creating the machine, the user will already have a visual feedback
+                // by it being added to the list of machines
+                if(currMachine.id != null && currMachine.id.length() > 0) {
+                    JOptionPane.showMessageDialog(this, "Machine updated successfully", "Sshelter: Save machine", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                try {
+                    var machines = Sshelter.api.Machines().findAll().elements;
+                    if (machines != null) {
+                        TrayIcon.get().setMachines(machines);
+                        this.frame.setMachines(machines);
+                        this.frame.selectById(savedMachine.id);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Sshelter: Error creating/updating machine", JOptionPane.ERROR_MESSAGE);
             }
@@ -132,6 +151,18 @@ class EditPanel extends JPanel {
         this.constraints.fill = fill ? GridBagConstraints.HORIZONTAL : GridBagConstraints.NONE;
 
         this.panel.add(cmp, this.constraints);
+    }
+
+    public Machine getMachine() {
+        this.machine.name = this.fullnameField.getText();
+        this.machine.shortName = this.shortnameField.getText();
+        this.machine.hostname = this.hostnameField.getText();
+        this.machine.port = (int)this.portField.getValue();
+        this.machine.username = this.usernameField.getText();
+        this.machine.otherSettings = this.otherSettingsField.getText();
+        this.machine.forwardedPorts = this.forwardedPortPane.getForwardedPorts();
+
+        return this.machine;
     }
 
     public void setMachine(Machine machine) {

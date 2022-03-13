@@ -25,7 +25,7 @@ public class RefreshInterceptor implements Interceptor {
             return chain.proceed(rq);
         }
 
-        if (this.api.Auth().getAuthenticationData().isExpired()) {
+        if (this.api.Auth().getAuthenticationData().isExpired() && rq.headers().get("Authorization") != null) {
             try {
                 this.api.Auth().refresh();
                 if (this.api.Auth().getAuthenticationUpdatedCallback() != null) {

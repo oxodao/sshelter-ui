@@ -1,4 +1,4 @@
-package fr.oxodao.sshelter.api.model;
+package fr.oxodao.sshelter.api.model.hydra;
 
 import com.google.gson.annotations.SerializedName;
 import java.lang.reflect.ParameterizedType;

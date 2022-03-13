@@ -1,7 +1,7 @@
 package fr.oxodao.sshelter.api;
 
-import fr.oxodao.sshelter.Sshelter;
-import fr.oxodao.sshelter.api.model.HydraList;
+import fr.oxodao.sshelter.api.model.hydra.HydraError;
+import fr.oxodao.sshelter.api.model.hydra.HydraList;
 import fr.oxodao.sshelter.api.model.Machine;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -32,6 +32,16 @@ public class Machines {
     public Machine create(Machine machine) throws Exception {
         var body = RequestBody.create(SshelterApi.gson.toJson(machine), JSON);
         Response resp = this.api.client.newCall(this.api.prepare("POST", "/machines", body)).execute();
+
+        if (resp.code() == 400 || resp.code() == 422) {
+            HydraError error = SshelterApi.gson.fromJson(
+                    resp.body().string(),
+                    HydraError.class
+            );
+
+            throw new Exception(error.toString());
+        }
+
         if (resp.code() != 201) {
             throw new Exception("Error while creating machine: " + resp.body().string());
         }
@@ -49,6 +59,16 @@ public class Machines {
 
         var body = RequestBody.create(SshelterApi.gson.toJson(machine), JSON);
         Response resp = this.api.client.newCall(this.api.prepare("PUT", machine.id, body)).execute();
+
+        if (resp.code() == 400 || resp.code() == 422) {
+            HydraError error = SshelterApi.gson.fromJson(
+                    resp.body().string(),
+                    HydraError.class
+            );
+
+            throw new Exception(error.toString());
+        }
+
         if (resp.code() != 200) {
             throw new Exception("Error while updating machine: " + resp.body().string());
         }

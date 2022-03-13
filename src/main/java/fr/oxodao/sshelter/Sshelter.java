@@ -3,8 +3,6 @@ package fr.oxodao.sshelter;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import fr.oxodao.sshelter.api.SshelterApi;
-import fr.oxodao.sshelter.api.model.HydraList;
-import fr.oxodao.sshelter.api.model.Machine;
 
 import javax.swing.*;
 
