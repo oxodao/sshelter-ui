@@ -18,9 +18,9 @@ $ sudo ln -s /opt/sshelter/bin/SSHelter /usr/local/sshelter
 
 ## Usage
 
-Once installed, you simply have to run the sshelter command. There is no shorcut made yet so it wont be found in your standard app launcher.
+Once installed, you simply have to run the sshelter command. There is no shortcut made yet, so it won't be found in your standard app launcher.
 
-The first time, you will be greeted with a prompt to login. Fill the information and you will have an icon in your system tray. When right-clicked, it will give you a list of your machine. In the future, clicking on them will silently connect in SSH to them so that you can access your port forwardings.
+The first time, you will be greeted with a prompt to login. Fill the information, then you will have an icon in your system tray. When right-clicked, it will give you a list of your machine. In the future, clicking on them will silently connect in SSH to them so that you can access your port forwardings.
 
 ## Roadmap
 - [x] Implementing basic auto-sync
@@ -28,8 +28,13 @@ The first time, you will be greeted with a prompt to login. Fill the information
 - [x] Implementing a way to delete machines
 - [ ] Implementing a way to export machines
 - [ ] Fix the API => editing a machine that does not change its shortname results in an error
+- [ ] Handle HiDPI properly
 - [ ] SSH Connection to the machines
     - [ ] Let the user choose which SSH key to use (client-side only)
+    - [ ] CLI using jediterm
+    - [ ] Have a global state about each SSH connection to use the same every time
+    - [ ] File transfer
+- [ ] Use home made icons
 - [ ] General system stability improvements to enhance the user's experience.
 
 ## License

@@ -3,11 +3,13 @@ package fr.oxodao.sshelter;
 import dorkbox.systemTray.*;
 import fr.oxodao.sshelter.api.model.Machine;
 import fr.oxodao.sshelter.ui.EditMachinesFrame;
+import fr.oxodao.sshelter.ui.MainWindow;
 
 import javax.swing.*;
 
 public class TrayIcon {
 
+    public MainWindow mainWindow = new MainWindow();
     public static TrayIcon instance = null;
 
     private ThreadSync syncThread;
@@ -35,6 +37,7 @@ public class TrayIcon {
         this.machines = new Menu("Machines");
 
         Menu menu = this.trayIcon.getMenu();
+        menu.add(new MenuItem("Show", (evt) -> SwingUtilities.invokeLater(() -> this.mainWindow.setVisible(true))));
         menu.add(this.machines);
         menu.add(this.autosyncMenuItem = new Checkbox("Autosync", (evt) -> {
             if (this.syncThread != null) {
